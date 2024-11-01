@@ -23,8 +23,8 @@
                                             wire:model.live='search'></label></div>
                             </div>
                         </div> --}}
-                        <label class="col-form-label col-md-1">Kecamatan</label>
-                        <div class="col-md-3">
+                        {{-- <label class="col-form-label col-md-1">Kecamatan</label> --}}
+                        {{-- <div class="col-md-3">
                             <div class="col-lg-10">
                                 <select wire:model.live="searchKecamatan" class="form-control">
                                     <option value="">Pilih Kecamatan</option>
@@ -33,7 +33,7 @@
                                     @endforeach
                                 </select>
                             </div>
-                        </div>
+                        </div> --}}
                         <label class="col-form-label col-md-1">Kelurahan / Desa</label>
                         <div class="col-md-3">
                             <div class="col-lg-10">
@@ -67,10 +67,10 @@
                             <thead class="bg-grey-400">
                                 <tr>
                                     <th rowspan="2" class="text-center">#</th>
-                                    <th rowspan="2" class="text-center">Kecamatan</th>
+                                    {{-- <th rowspan="2" class="text-center">Kecamatan</th> --}}
                                     <th rowspan="2" class="text-center">Desa</th>
                                     {{-- <th rowspan="2" class="text-center">TPS</th> --}}
-                                    <th colspan="4" class="text-center">Bupati/Wakil Bupati</th>
+                                    <th colspan="6" class="text-center">Bupati/Wakil Bupati</th>
                                     <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
                                     <th rowspan="2" class="text-center">DPT</th>
                                     <th rowspan="2" class="text-center">DPTb</th>
@@ -79,6 +79,8 @@
                                 <tr>
                                     <th class="text-center">1</th>
                                     <th class="text-center">2</th>
+                                    <th class="text-center">3</th>
+                                    <th class="text-center">4</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
                                     <th class="text-center">1</th>
@@ -96,13 +98,17 @@
                                         @endphp
                                         <td class="text-left">
                                             {{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
-                                        <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td>
+                                        {{-- <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td> --}}
                                         <td class="text-left">{{ $row->desaTPS->region_nm ?? '' }}</td>
                                         <td class="text-right">{{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_3 ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_b_4 ?? 0, 0, ',', '.') }}
+                                        </td>
+                                        <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">
 
@@ -120,7 +126,7 @@
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
                                         </td>
-                                        <td class="text-right">{{ number_format($row->total_g_3 ?? 0, 0, ',', '.') }}
+                                        <td class="text-right">{{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">
                                             @if ($row->total_g > $sum)
@@ -143,13 +149,17 @@
                                     </tr>
                                 @endforeach
                                 <tr class="bg-slate">
-                                    <td colspan="3">Total</td>
+                                    <td colspan="2">Total</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_b_1') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_b_2') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_b_3') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_b_4') ?? 0, 0, ',', '.') }}</td>
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_bts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
@@ -157,7 +167,7 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g_2') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_g_3') ?? 0, 0, ',', '.') }}</td>
+                                        {{ number_format($data->sum('total_gts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">{{ number_format($data->sum('total_g') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">

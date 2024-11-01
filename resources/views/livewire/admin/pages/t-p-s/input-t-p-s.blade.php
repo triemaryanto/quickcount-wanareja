@@ -12,7 +12,7 @@
                                     wire:model.live='search'></label></div>
                     </div>
                 </div> --}}
-                <label class="col-form-label col-md-1">Kecamatan</label>
+                {{-- <label class="col-form-label col-md-1">Kecamatan</label>
                 <div class="col-md-3">
                     <div class="col-lg-10">
                         <select wire:model.live="searchKecamatan" class="form-control">
@@ -22,7 +22,7 @@
                             @endforeach
                         </select>
                     </div>
-                </div>
+                </div> --}}
                 <label class="col-form-label col-md-1">Kelurahan / Desa</label>
                 <div class="col-md-3">
                     <div class="col-lg-10">
@@ -56,10 +56,10 @@
                     <thead class="bg-grey-400">
                         <tr>
                             <th rowspan="2" class="text-center">#</th>
-                            <th rowspan="2" class="text-center">Kecamatan</th>
+                            {{-- <th rowspan="2" class="text-center">Kecamatan</th> --}}
                             <th rowspan="2" class="text-center">Desa</th>
                             <th rowspan="2" class="text-center">TPS</th>
-                            <th colspan="4" class="text-center">Bupati/Wakil Bupati</th>
+                            <th colspan="6" class="text-center">Bupati/Wakil Bupati</th>
                             <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
                             <th rowspan="2" class="text-center">DPT</th>
                             <th rowspan="2" class="text-center">DPTb</th>
@@ -68,6 +68,8 @@
                         <tr>
                             <th class="text-center">1</th>
                             <th class="text-center">2</th>
+                            <th class="text-center">3</th>
+                            <th class="text-center">4</th>
                             <th class="text-center">Suara Tidak Sah</th>
                             <th class="text-center">Total</th>
                             <th class="text-center">1</th>
@@ -79,13 +81,18 @@
                     <tbody>
                         @foreach ($data as $index => $row)
                             @php
-                                $totalBupati = ($row->b_1 ?? 0) + ($row->b_2 ?? 0) + ($row->b_ts ?? 0);
+                                $totalBupati =
+                                    ($row->b_1 ?? 0) +
+                                    ($row->b_2 ?? 0) +
+                                    ($row->b_3 ?? 0) +
+                                    ($row->b_4 ?? 0) +
+                                    ($row->b_ts ?? 0);
                                 $totalGubernur = ($row->g_1 ?? 0) + ($row->g_2 ?? 0) + ($row->g_ts ?? 0);
                                 $total = ($row->dpt ?? 0) + ($row->dptb ?? 0);
                             @endphp
                             <tr role="row" class="odd {{ $idNya == $row->id ? 'table-active ' : 'disabled' }}">
                                 <td>{{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
-                                <td>{{ $row->kecamatanTPS->region_nm }}</td>
+                                {{-- <td>{{ $row->kecamatanTPS->region_nm }}</td> --}}
                                 <td>{{ $row->desaTPS->region_nm }}</td>
                                 <td>{{ $row->tps }}</td>
                                 <!-- Gubernur Fields -->
@@ -98,6 +105,14 @@
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_2.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
+                                <td><input type="number" class="form-control"
+                                        {{ $idNya == $row->id ? '' : 'disabled' }}
+                                        wire:model.defer="b_3.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
+                                <td><input type="number" class="form-control"
+                                        {{ $idNya == $row->id ? '' : 'disabled' }}
+                                        wire:model.defer="b_4.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
                                 <td><input type="number" class="form-control"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
@@ -152,15 +167,19 @@
                             </tr>
                         @endforeach
                         <tr class="bg-slate">
-                            <td colspan="4">Total</td>
+                            <td colspan="3">Total</td>
+                            <td>{{ array_sum($b_1) }}</td>
+                            <td>{{ array_sum($b_2) }}</td>
+                            <td>{{ array_sum($b_3) }}</td>
+                            <td>{{ array_sum($b_4) }}</td>
+                            <td>{{ array_sum($b_ts) }}</td>
+                            <td class="text-right">
+                                {{ array_sum($b_1) + array_sum($b_2) + array_sum($b_3) + array_sum($b_4) + array_sum($b_ts) }}
+                            </td>
                             <td>{{ array_sum($g_1) }}</td>
                             <td>{{ array_sum($g_2) }}</td>
                             <td>{{ array_sum($g_ts) }}</td>
                             <td class="text-right">{{ array_sum($g_1) + array_sum($g_2) + array_sum($g_ts) }}</td>
-                            <td>{{ array_sum($b_1) }}</td>
-                            <td>{{ array_sum($b_2) }}</td>
-                            <td>{{ array_sum($b_ts) }}</td>
-                            <td class="text-right">{{ array_sum($b_1) + array_sum($b_2) + array_sum($b_ts) }}</td>
                             <td class="text-right">{{ array_sum($dpt) }}</td>
                             <td class="text-right">{{ array_sum($dptb) }}</td>
                             <td></td>

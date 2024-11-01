@@ -17,6 +17,8 @@ class InputTPS extends Component
     public $g_ts = [];
     public $b_1 = [];
     public $b_2 = [];
+    public $b_3 = [];
+    public $b_4 = [];
     public $b_ts = [];
     public $dpt = [];
     public $dptb = [];
@@ -24,7 +26,7 @@ class InputTPS extends Component
 
     public function clear()
     {
-        $this->searchKecamatan = null;
+        // $this->searchKecamatan = null;
         $this->searchDesa = null;
         $this->searchDesa = null;
         $this->listDesa = null;
@@ -52,6 +54,8 @@ class InputTPS extends Component
             $row->g_ts = $this->g_ts[$index] ?? 0;
             $row->b_1 = $this->b_1[$index] ?? 0;
             $row->b_2 = $this->b_2[$index] ?? 0;
+            $row->b_3 = $this->b_3[$index] ?? 0;
+            $row->b_4 = $this->b_4[$index] ?? 0;
             $row->b_ts = $this->b_ts[$index] ?? 0;
             $row->dpt = $this->dpt[$index] ?? 0;
             $row->dptb = $this->dptb[$index] ?? 0;
@@ -62,7 +66,8 @@ class InputTPS extends Component
     }
     public function mount()
     {
-        $this->listKec = ComRegion::where('region_level', '3')->get();
+        // $this->listKec = ComRegion::where('region_level', '3')->get();
+        $this->listDesa = ComRegion::where('region_root', 3301020)->get()->toArray();
     }
     public function render()
     {
@@ -88,6 +93,8 @@ class InputTPS extends Component
         $this->g_ts = [];
         $this->b_1 = [];
         $this->b_2 = [];
+        $this->b_3 = [];
+        $this->b_4 = [];
         $this->b_ts = [];
         $this->dpt = [];
         $this->dptb = [];
@@ -98,6 +105,8 @@ class InputTPS extends Component
             array_push($this->g_ts, $datum->g_ts);
             array_push($this->b_1, $datum->b_1);
             array_push($this->b_2, $datum->b_2);
+            array_push($this->b_3, $datum->b_3);
+            array_push($this->b_4, $datum->b_4);
             array_push($this->b_ts, $datum->b_ts);
             array_push($this->dpt, $datum->dpt);
             array_push($this->dptb, $datum->dptb);
