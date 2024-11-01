@@ -51,7 +51,8 @@
         "DB_CONNECTION": "mysql",
         "DB_HOST": "mysql-21c6dbf4-hitungcepat.h.aivencloud.com",
         "DB_PORT": "16715",
-        "DB_DATABASE": "avnadmin",
-        "DB_USERNAME": "AVNS_cklGUTajGHfq0jLTV-y"
+        "DB_DATABASE": "defaultdb",
+        "DB_USERNAME": "avnadmin",
+        "DB_PASSWORD": "AVNS_cklGUTajGHfq0jLTV-y"
     }
 }
