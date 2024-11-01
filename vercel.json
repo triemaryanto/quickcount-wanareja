@@ -15,7 +15,7 @@
     "routes": [
         {
             "src": "/(.*)",
-            "dest": "/public/$1"
+            "dest": "/"
         },
         {
             "src": "/build/assets/(.*)",
@@ -32,12 +32,6 @@
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
-        }
-    ],
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/"
         }
     ],
     "env": {
