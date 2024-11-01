@@ -46,10 +46,7 @@ require __DIR__ . '/../vendor/autoload.php';
 */
 
 $app = require_once __DIR__ . '/../bootstrap/app.php';
-Artisan::call('migrate:fresh --seed');
-Artisan::call('storage:link');
 
-echo Artisan::output();
 $kernel = $app->make(Kernel::class);
 
 $response = $kernel->handle(
