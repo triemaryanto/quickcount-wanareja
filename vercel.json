@@ -14,32 +14,17 @@
     ],
     "routes": [
         {
-            "src": "/(.*)",
-            "dest": "/public/$1"
-        },
-        {
-            "src": "/build/assets/(.*)",
-            "dest": "/public/build/assets/$1"
-        },
-        {
-            "src": "/favicon.ico",
-            "dest": "/public/favicon.ico"
-        },
-        {
-            "src": "/robots.txt",
-            "dest": "/public/robots.txt"
+            "src": "/build/(.*)",
+            "dest": "/public/build/"
         },
         {
             "src": "/(.*)",
             "dest": "/api/index.php"
         }
     ],
-    "rewrites": [
-        {
-            "source": "/(.*)",
-            "destination": "/public/$1"
-        }
-    ],
+    "public": true,
+    "buildCommand": "vite build",
+    "outputDirectory": "public",
     "env": {
         "APP_ENV": "production",
         "APP_DEBUG": "false",
