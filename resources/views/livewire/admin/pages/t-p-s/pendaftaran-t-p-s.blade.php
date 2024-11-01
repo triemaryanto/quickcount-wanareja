@@ -211,6 +211,20 @@
                             </div>
                         @endif
                     </div>
+                    <div class="mb-2 row">
+                        <label class="col-form-label col-md-6">{{ __('Donwload Contoh Format') }}</label>
+                        <div class="col-md-6">
+                            <button type="button" class="btn btn-info" wire:click="download"
+                                wire:loading.remove>Download</button>
+                            <div wire:loading wire:target="download">
+                                <button class="btn btn-warning" type="button" disabled>
+                                    <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                        aria-hidden="true"></span>
+                                    Downloading...
+                                </button>
+                            </div>
+                        </div>
+                    </div>
                     <div class="row">
                         <label class="col-form-label col-md-2">{{ __('File') }}</label>
                         <div class="col-md-10">
@@ -234,7 +248,7 @@
                     <button type="button" wire:click="importTps" class="btn btn-primary" wire:loading.remove>Save
                         changes</button>
                     <div wire:loading wire:target="importTps">
-                        <button class="btn btn-secondary-light" type="button" disabled>
+                        <button class="btn btn-warning" type="button" disabled>
                             <span class="spinner-grow spinner-grow-sm align-middle" role="status"
                                 aria-hidden="true"></span>
                             Import...

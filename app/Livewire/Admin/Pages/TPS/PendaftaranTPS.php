@@ -21,6 +21,11 @@ class PendaftaranTPS extends Component
     public $region_kec, $region_kel, $desa, $kecamatan, $tps, $file, $searchKecamatan, $searchDesa;
     public $listKec, $listDesa;
     public $progress = 0;
+    public function download()
+    {
+        $filePath = public_path("format.xlsx");
+        return response()->download($filePath);
+    }
     public function updatedFile()
     {
         $this->reset('progress');
