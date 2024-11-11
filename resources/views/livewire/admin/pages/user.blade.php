@@ -36,6 +36,7 @@
                                 'class' => 'form-control' . ($errors->has('email') ? ' border-danger' : null),
                                 'placeholder' => 'Email',
                                 'wire:model.lazy' => 'email',
+                                'disabled' => $idNya ? 'disabled' : null,
                             ]) }}
                             @error('email')
                                 <span class="form-text text-danger">{{ $message }}</span>
@@ -85,20 +86,20 @@
                     </div>
                     <div class="col-md-3">
                         <label>Confirm Password:</label>
-                        {{ Form::password('confirmpassword', [
-                            'class' => 'form-control' . ($errors->has('confirmpassword') ? ' border-danger' : null),
+                        {{ Form::password('password_confirmation', [
+                            'class' => 'form-control' . ($errors->has('password') ? ' border-danger' : null),
                             'placeholder' => 'Confirm Password',
-                            'wire:model.lazy' => 'confirmpassword',
+                            'wire:model.lazy' => 'password_confirmation',
                         ]) }}
-                        @error('confirmpassword')
+                        @error('password')
                             <span class="form-text text-danger">{{ $message }}</span>
                         @enderror
                     </div>
                     <div class="col-md-3">
                         <div class="form-group">
-                            <label>Kecamatan</label>
+                            <label>Desa</label>
                             <select wire:model.live="kecamatan" class="form-control">
-                                <option value="">Pilih Kecamatan</option>
+                                <option value="">Pilih Desa</option>
                                 @foreach ($listKec ?? [] as $list)
                                     <option value="{{ $list->region_cd }}">{{ $list->region_nm }}</option>
                                 @endforeach

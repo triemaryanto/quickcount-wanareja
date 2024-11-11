@@ -16,28 +16,28 @@ class UserSeeder extends Seeder
      */
     public function run(): void
     {
-        User::create([
-            'name'      => 'admin',
-            'email'     => 'admin@app.com',
-            'password'  => Hash::make('password'),
-            'status'     => true,
-            'wa'     => '0851',
-            'wa_verified_at' => now(),
-            'email_verified_at'     => now(),
-        ])->assignRole('admin')->givePermissionTo(['home', 'dashboard', 'master']);
-        User::create([
-            'name'      => 'user',
-            'email'     => 'user@app.com',
-            'password'  => Hash::make('password'),
-            'status'     => true,
-            'wa'     => '08512',
-            'wa_verified_at' => now(),
-            'email_verified_at' => now(),
-        ])->assignRole('user')->givePermissionTo(['home', 'dashboard']);
+        // User::create([
+        //     'name'      => 'admin',
+        //     'email'     => 'admin@app.com',
+        //     'password'  => Hash::make('@P4ssw0rd'),
+        //     'status'     => true,
+        //     'wa'     => '0851',
+        //     'wa_verified_at' => now(),
+        //     'email_verified_at'     => now(),
+        // ])->assignRole('admin')->givePermissionTo(['home', 'dashboard', 'master']);
+        // User::create([
+        //     'name'      => 'user',
+        //     'email'     => 'user@app.com',
+        //     'password'  => Hash::make('password'),
+        //     'status'     => true,
+        //     'wa'     => '08512',
+        //     'wa_verified_at' => now(),
+        //     'email_verified_at' => now(),
+        // ])->assignRole('user')->givePermissionTo(['home', 'dashboard']);
         User::create([
             'name'      => 'SuperAdmin',
             'email'     => 'superadmin@app.com',
-            'password'  => Hash::make('password'),
+            'password'  => Hash::make('@P4ssw0rd'),
             'status'     => true,
             'wa'     => '0851',
             'wa_verified_at' => now(),
@@ -47,19 +47,19 @@ class UserSeeder extends Seeder
             'name'      => 'Admin TPS',
             'email'     => 'admintps@app.com',
             'password'  => Hash::make('password'),
-            'status'     => true,
+            'status'     => false,
             'wa'     => '0851',
             'wa_verified_at' => now(),
             'email_verified_at'     => now(),
-        ])->assignRole('admin-tps')->givePermissionTo(['dashboard-tps', 'tps', 'pendaftaran-tps']);
-        $data = ComRegion::where('region_root', 3307)->get();
+        ])->assignRole('admin-tps')->givePermissionTo(['master', 'user', 'dashboard-tps', 'tps', 'pendaftaran-tps']);
+        $data = ComRegion::where('region_root', 3301020)->get();
         $no = 1;
         foreach ($data as $row) {
             User::create([
                 'name'      => $row->region_nm,
                 'email'     => strtolower($row->region_nm) . '@app.com',
-                'password'  => Hash::make('@password' . $no++),
-                'status'     => true,
+                'password'  => Hash::make('password'),
+                'status'     => false,
                 'wa'     => '0851',
                 'wa_verified_at' => now(),
                 'email_verified_at'     => now(),

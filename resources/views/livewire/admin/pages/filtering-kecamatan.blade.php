@@ -51,6 +51,7 @@
                         <div class="col-md-3">
                             <div class="col-lg-3">
                                 <select wire:model.live="limit" class="form-control">
+                                    <option value>All</option>
                                     <option value="10">10</option>
                                     <option value="20">20</option>
                                     <option value="50">50</option>
@@ -58,8 +59,23 @@
                                 </select>
                             </div>
                         </div>
-                        <div class="col-md-3">
+
+                    </div>
+                    <div class="col-12 mb-3 row">
+                        <div class="col-md-1">
                             <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset</a>
+                        </div>
+                        <div class="col-md-1">
+                            <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReport">
+                                Download
+                                Laporan</div>
+                            <div wire:loading wire:target="downloadReport">
+                                <button class="btn btn-secondary-light" type="button" disabled>
+                                    <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                        aria-hidden="true"></span>
+                                    Downloading...
+                                </button>
+                            </div>
                         </div>
                     </div>
                     <div class="table-responsive mb-4">
@@ -97,7 +113,12 @@
                                             $sum = ($row->total_dpt ?? 0) + ($row->total_dptb ?? 0);
                                         @endphp
                                         <td class="text-left">
-                                            {{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
+                                            @if ($data instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                                                {{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}
+                                            @else
+                                                {{ $index + 1 }}
+                                            @endif
+                                        </td>
                                         {{-- <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td> --}}
                                         <td class="text-left">{{ $row->desaTPS->region_nm ?? '' }}</td>
                                         <td class="text-right">{{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
@@ -110,10 +131,11 @@
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
                                         </td>
-                                        <td class="text-right">
+                                        <td
+                                            class="text-right {{ $row->total_b > $sum ? 'bg-danger' : ($row->total_b < $sum ? 'bg-orange-300' : 'bg-success') }}">
 
                                             @if ($row->total_b > $sum)
-                                                <span style="color:red;">
+                                                <span style="color:white;">
                                                     {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
                                                 </span>
                                             @else
@@ -128,9 +150,10 @@
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
                                         </td>
-                                        <td class="text-right">
+                                        <td
+                                            class="text-right  {{ $row->total_g > $sum ? 'bg-danger' : ($row->total_g < $sum ? 'bg-orange-300' : 'bg-success') }}">
                                             @if ($row->total_g > $sum)
-                                                <span style="color:red;">
+                                                <span style="color:white;">
                                                     {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
                                                 </span>
                                             @else
@@ -186,7 +209,9 @@
                 </div>
             </div>
             <div class="text-right flex justify-end">
-                {{ $data->links() }}
+                @if ($data instanceof \Illuminate\Pagination\LengthAwarePaginator)
+                    {{ $data->links() }} <!-- Show pagination links only if paginated -->
+                @endif
             </div>
         </div>
     </div>

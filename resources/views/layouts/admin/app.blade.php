@@ -79,7 +79,7 @@
 
                 <div class="navbar-collapse collapse" id="navbar-footer">
                     <span class="navbar-text">
-                        &copy; 2024 By <a href="https://wa.me/6285157392291">Tri Maryanto</a>
+                        &copy; 2024 By <a href="https://www.instagram.com/triemaryanto" target="_blank">Tri Maryanto</a>
                     </span>
                 </div>
             </div>

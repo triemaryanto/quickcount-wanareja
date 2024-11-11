@@ -3,7 +3,7 @@
 if (!function_exists('get_role_user')) {
     function get_role_user()
     {
-        return \Spatie\Permission\Models\Role::pluck('name', 'name');
+        return \Spatie\Permission\Models\Role::whereIn('name', ['admin-tps', 'tps'])->pluck('name', 'name');
     }
 }
 

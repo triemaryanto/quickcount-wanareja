@@ -40,25 +40,35 @@ class InputTPS extends Component
     {
         $this->idNya = $id;
     }
+    private function defaultZero($value)
+    {
+        return $value == '' ? 0 : $value;
+    }
     public function save($index,  $id)
     {
+        $this->g_1[$index] = $this->defaultZero($this->g_1[$index]);
+        $this->g_2[$index] = $this->defaultZero($this->g_2[$index]);
+        $this->g_ts[$index] = $this->defaultZero($this->g_ts[$index]);
+        $this->b_1[$index] = $this->defaultZero($this->b_1[$index]);
+        $this->b_2[$index] = $this->defaultZero($this->b_2[$index]);
+        $this->b_3[$index] = $this->defaultZero($this->b_3[$index]);
+        $this->b_4[$index] = $this->defaultZero($this->b_4[$index]);
+        $this->b_ts[$index] = $this->defaultZero($this->b_ts[$index]);
+        $this->dpt[$index] = $this->defaultZero($this->dpt[$index]);
+        $this->dptb[$index] = $this->defaultZero($this->dptb[$index]);
 
-
-        // Find the row by its ID
         $row = Hasil::find($id);
-
-        // Update the fields only if the row exists
         if ($row) {
-            $row->g_1 = $this->g_1[$index] ?? 0;
-            $row->g_2 = $this->g_2[$index] ?? 0;
-            $row->g_ts = $this->g_ts[$index] ?? 0;
-            $row->b_1 = $this->b_1[$index] ?? 0;
-            $row->b_2 = $this->b_2[$index] ?? 0;
-            $row->b_3 = $this->b_3[$index] ?? 0;
-            $row->b_4 = $this->b_4[$index] ?? 0;
-            $row->b_ts = $this->b_ts[$index] ?? 0;
-            $row->dpt = $this->dpt[$index] ?? 0;
-            $row->dptb = $this->dptb[$index] ?? 0;
+            $row->g_1 = $this->g_1[$index];
+            $row->g_2 = $this->g_2[$index];
+            $row->g_ts = $this->g_ts[$index];
+            $row->b_1 = $this->b_1[$index];
+            $row->b_2 = $this->b_2[$index];
+            $row->b_3 = $this->b_3[$index];
+            $row->b_4 = $this->b_4[$index];
+            $row->b_ts = $this->b_ts[$index];
+            $row->dpt = $this->dpt[$index];
+            $row->dptb = $this->dptb[$index];
             $row->save();
         }
 
@@ -73,15 +83,15 @@ class InputTPS extends Component
     {
         $data = Hasil::query();
         if (auth()->user()->region_cd) {
-            $data->whereHas('kecamatanTPS', function ($query) {
+            $data->whereHas('desaTPS', function ($query) {
                 $query->where('region_cd', auth()->user()->region_cd);
             });
         }
-        if ($this->searchKecamatan) {
-            $data->whereHas('kecamatanTPS', function ($query) {
-                $query->where('region_cd', $this->searchKecamatan);
-            });
-        }
+        // if ($this->searchKecamatan) {
+        //     $data->whereHas('kecamatanTPS', function ($query) {
+        //         $query->where('region_cd', $this->searchKecamatan);
+        //     });
+        // }
         if ($this->searchDesa) {
             $data->whereHas('desaTPS', function ($query) {
                 $query->where('region_cd', $this->searchDesa);

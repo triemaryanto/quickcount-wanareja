@@ -6,10 +6,11 @@ use App\Models\ComRegion;
 use Livewire\Component;
 use App\Models\User as ModelsUser;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Validation\Rules\Password;
 
 class User extends Component
 {
-    public $idNya, $name, $email, $password, $confirmpassword, $role_user, $wa, $listKec, $kecamatan;
+    public $idNya, $name, $email, $password, $password_confirmation, $role_user, $wa, $listKec, $kecamatan;
     public $isEdit = false;
 
     protected $listeners = ['edit', 'delete'];
@@ -19,7 +20,7 @@ class User extends Component
         'wa' => 'required|min:9',
         'email' => 'required|string|email|unique:users',
         'password' => 'required|min:8',
-        'confirmpassword' => 'required|same:password|min:8',
+        'password_confirmation' => 'required|same:password|min:8',
         'role_user' => 'required',
     ];
 
@@ -54,7 +55,7 @@ class User extends Component
         if ($this->idNya) {
             $this->update();
         } else {
-            $this->validate();
+            $this->validate($this->rules);
             ModelsUser::create([
                 'name' => $this->name,
                 'email' => $this->email,
@@ -71,6 +72,13 @@ class User extends Component
     }
     public function update()
     {
+        $valid = [
+            'password' => ['required', 'confirmed', Password::min(8)],
+        ];
+        $message = [
+            'password.confirmed' => 'Password Tidak Sama.'
+        ];
+        $this->validate($valid, $message);
         $dataUser = ModelsUser::find($this->idNya);
         $dataUser->name = $this->name;
         $dataUser->email = $this->email;
@@ -79,6 +87,7 @@ class User extends Component
             $dataUser->password = Hash::make($this->password);
         }
         $dataUser->region_cd = $this->kecamatan;
+        $dataUser->status = false;
         $dataUser->save();
         $this->dispatchBrowserEvent('Update');
         $this->emit('refreshDatatable');
@@ -94,7 +103,7 @@ class User extends Component
     }
     public function mount()
     {
-        $this->listKec = ComRegion::where('region_level', '3')->get();
+        $this->listKec = ComRegion::where('region_root', '3301020')->get();
     }
     public function render()
     {

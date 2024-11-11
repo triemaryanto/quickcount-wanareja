@@ -98,50 +98,52 @@
                                 <!-- Gubernur Fields -->
 
                                 <!-- Bupati Fields -->
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_1.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_2.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_3.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_4.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_ts.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td class="text-right">
+                                <td
+                                    class="text-right {{ $totalBupati > $total ? 'bg-danger' : ($totalBupati < $total ? 'bg-orange-300' : 'bg-success') }}">
                                     @if ($totalBupati > $total)
-                                        <span style="color:red;">
+                                        <span style="color:white;">
                                             {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
                                         </span>
                                     @else
                                         {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
                                     @endif
                                 </td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_1.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_2.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td><input type="number" class="form-control"
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_ts.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td class="text-right">
+                                <td
+                                    class="text-right {{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
                                     @if ($totalGubernur > $total)
-                                        <span style="color:red;">
+                                        <span style="color:white;">
                                             {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
                                         </span>
                                     @else
@@ -197,7 +199,14 @@
                 if (charCode > 31 && (charCode < 48 || charCode > 57))
                     return false;
                 return true;
+
             }
+            document.body.addEventListener('paste', function(e) {
+                // Check if the pasted element is an <input type="number">
+                if (e.target && e.target.type === 'number') {
+                    e.preventDefault(); // Disable paste functionality
+                }
+            });
         </script>
     @endpush
 </div>
