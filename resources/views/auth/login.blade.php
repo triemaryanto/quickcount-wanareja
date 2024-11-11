@@ -82,7 +82,8 @@
                             </div>
 
                             <div class="form-group d-flex align-items-center">
-                                <a href="{{ url('forgot-password') }}" class="ml-auto">Forgot password?</a>
+                                <a href="https://wa.me/6283896362663?text=*Permohonan Reset Password*%0D%0A%0D%0AHalo Admin%0D%0ATolong Resetkan Account:%0D%0AEmail:%0D%0A%0D%0ATerimakasih."
+                                    class="ml-auto" target="_blank">Forgot password?</a>
                             </div>
 
                             <div class="form-group">
