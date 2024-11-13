@@ -228,7 +228,6 @@
                     //barchart Gurbernur
                     var ctx = document.getElementById('gubernurChart').getContext('2d');
                     var chartData = @json($chartGubernur);
-                    console.log(chartData);
                     var labels = chartData.map(item => item.region);
                     var g1Data = chartData.map(item => item.total_g1);
                     var g2Data = chartData.map(item => item.total_g2);
