@@ -54,7 +54,7 @@
 
     </div>
     <div class="text-right">
-        <span> Waktu Donwload : {{ now() }}</span>
+        <span> Waktu Donwload : {{ now()->timezone('Asia/Jakarta')->translatedFormat('d F Y H:i:s') }}</span>
     </div>
     <table>
         <thead>

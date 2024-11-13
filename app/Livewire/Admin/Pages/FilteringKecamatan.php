@@ -59,7 +59,7 @@ class FilteringKecamatan extends Component
             echo $pdf->output();
         }, now()->format('Y-m-d_H-i-s') . '_report-hitung-cepat.pdf', [
             'Content-Type' => 'application/pdf',
-            'Content-Disposition' => 'attachment; filename="' . now()->format('Y-m-d_H-i-s') . '_report-hitung-cepat.pdf"',
+            'Content-Disposition' => 'attachment; filename="' . now()->timezone('Asia/Jakarta')->format('d-m-Y_H-i-s') . '_report-hitung-cepat.pdf"',
         ]);
     }
     public function mount()
