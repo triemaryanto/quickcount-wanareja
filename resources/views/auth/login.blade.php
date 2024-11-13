@@ -61,7 +61,8 @@
                             <x-elrista />
                             <div class="text-center mb-3">
                                 <h5 class="mb-0">Login to your account</h5>
-                                <span class="d-block text-muted">Your credentials</span>
+                                <span class="d-block text-muted">Hitung Cepat Kec. Wanareja Kab. Cilacap Jawa
+                                    Tengah</span>
                             </div>
 
                             <div class="form-group form-group-feedback form-group-feedback-left input-field">
