@@ -60,8 +60,8 @@
                         <div class="card-body">
                             <x-elrista />
                             <div class="text-center mb-3">
-                                <h5 class="mb-0">Login to your account</h5>
-                                <span class="d-block text-muted">Hitung Cepat Kec. Wanareja Kab. Cilacap Jawa
+                                <h5 class="mb-0">Halaman Login</h5>
+                                <span class="d-block text-muted">Hitung Cepat <br> Kec. Wanareja Kab. Cilacap <br>Jawa
                                     Tengah</span>
                             </div>
 
