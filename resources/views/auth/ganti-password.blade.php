@@ -5,7 +5,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>Quick Count Kab. Wonosobo</title>
+    <title>Quick Count Kec. Wanareja</title>
     <link rel="shortcut icon" href="{{ asset('images/logo-pemda.png') }}">
     <link href="{{ asset('costum/style.css') }}" rel="stylesheet">
     <!-- Global stylesheets -->
