@@ -115,7 +115,7 @@
                     var gubernurPieChart = new Chart(ctxGubernur, {
                         type: 'pie',
                         data: {
-                            labels: ['No. 1', 'No. 2', 'Tidak Sah'],
+                            labels: ['No. 1 Andika & Hendi', 'No. 2 Luthfi & Taj Yasin', 'Tidak Sah'],
                             datasets: [{
                                 label: 'Gubernur',
                                 data: @json($gubernur),
@@ -139,7 +139,9 @@
                     var bupatiPieChart = new Chart(ctxBupati, {
                         type: 'pie',
                         data: {
-                            labels: ['No. 1', 'No. 2', 'No 3', 'No 4', 'Tidak Sah'],
+                            labels: ['No. 1 SBW & Fahrur Rozi', 'No. 2 Imam Tobroni & Sonhaji',
+                                'No. 3 Syamsul & Ammy', 'No. 4 Awaludin & Vicky', 'Tidak Sah'
+                            ],
                             datasets: [{
                                 label: 'Bupati',
                                 data: @json($bupati),
@@ -178,28 +180,28 @@
                         data: {
                             labels: labels,
                             datasets: [{
-                                    label: 'No. 1',
+                                    label: 'No. 1 SBW & Fahrur Rozi',
                                     data: b1Data,
                                     backgroundColor: 'rgba(253, 0, 0, 0.8)',
                                     borderColor: 'rgba(0, 0, 0, 0.5)',
                                     borderWidth: 1
                                 },
                                 {
-                                    label: 'No. 2',
+                                    label: 'No. 2 Imam Tobroni & Sonhaji',
                                     data: b2Data,
                                     backgroundColor: 'rgba(6, 13, 209, 0.8)',
                                     borderColor: 'rgba(0, 0, 0, 0.5)',
                                     borderWidth: 1
                                 },
                                 {
-                                    label: 'No. 3',
+                                    label: 'No. 3 Syamsul & Ammy',
                                     data: b3Data,
                                     backgroundColor: 'rgba(233, 230, 9, 0.8)',
                                     borderColor: 'rgba(0, 0, 0, 0.5)',
                                     borderWidth: 1
                                 },
                                 {
-                                    label: 'No. 4',
+                                    label: 'No. 4 Awaludin & Vicky',
                                     data: b3Data,
                                     backgroundColor: 'rgba(255, 255, 255, 0.8)',
                                     borderColor: 'rgba(0, 0, 0, 0.5)',
@@ -237,14 +239,14 @@
                         data: {
                             labels: labels,
                             datasets: [{
-                                    label: 'No. 1',
+                                    label: 'No. 1 Andika & Hendi',
                                     data: g1Data,
                                     backgroundColor: 'rgba(217, 4, 15, 0.8)',
                                     borderColor: 'rgba(217, 4, 15, 0.8)',
                                     borderWidth: 1
                                 },
                                 {
-                                    label: 'No. 2',
+                                    label: 'No. 2 Luthfi & Taj Yasin',
                                     data: g2Data,
                                     backgroundColor: 'rgba(0, 56, 184, 0.8)',
                                     borderColor: 'rgba(0, 56, 184, 0.8)',

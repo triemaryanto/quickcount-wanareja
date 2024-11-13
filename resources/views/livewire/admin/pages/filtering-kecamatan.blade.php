@@ -93,14 +93,14 @@
                                     <th colspan="4" class="text-center">Total</th>
                                 </tr>
                                 <tr>
-                                    <th class="text-center">1</th>
-                                    <th class="text-center">2</th>
-                                    <th class="text-center">3</th>
-                                    <th class="text-center">4</th>
+                                    <th class="text-center">No. 1 <br>SBW & Fahrur Rozi</th>
+                                    <th class="text-center">No. 2 <br>Imam Tobroni & Sonhaji</th>
+                                    <th class="text-center">No. 3 <br>Syamsul & Ammy</th>
+                                    <th class="text-center">No. 4 <br>Awaludin & Vicky</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
-                                    <th class="text-center">1</th>
-                                    <th class="text-center">2</th>
+                                    <th class="text-center">No. 1 <br>Andika & Hendi</th>
+                                    <th class="text-center">No. 2 <br>Luthfi & Taj Yasin</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
                                     <th class="text-center">DPT + DPTb</th>

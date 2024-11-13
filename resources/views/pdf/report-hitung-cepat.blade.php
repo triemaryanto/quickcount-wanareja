@@ -78,16 +78,16 @@
             </tr>
             <tr>
                 <!-- Sub-columns for Bupati/Wakil Bupati -->
-                <th>1</th>
-                <th>2</th>
-                <th>3</th>
-                <th>4</th>
+                <th>No. 1 <br>SBW & Fahrur Rozi</th>
+                <th>No. 2 <br>Imam Tobroni & Sonhaji</th>
+                <th>No. 3 <br>Syamsul & Ammy</th>
+                <th>No. 4 <br>Awaludin & Vicky</th>
                 <th>Suara Tidak Sah</th>
                 <th>Total</th>
 
                 <!-- Sub-columns for Gubernur/Wakil Gubernur -->
-                <th>1</th>
-                <th>2</th>
+                <th>No. 1 <br>Andika & Hendi</th>
+                <th>No. 2 <br>Luthfi & Taj Yasin</th>
                 <th>Suara Tidak Sah</th>
                 <th>Total</th>
             </tr>
