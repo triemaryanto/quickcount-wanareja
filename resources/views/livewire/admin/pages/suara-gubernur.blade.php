@@ -181,7 +181,7 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g_2') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_gts') ?? 0, 0, ',', '.') }}</td>
+                                        {{ number_format($data->sum('total_g_ts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g') ?? 0, 0, ',', '.') }}
                                     </td>

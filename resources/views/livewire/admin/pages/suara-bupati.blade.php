@@ -173,7 +173,7 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_b_4') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_bts') ?? 0, 0, ',', '.') }}</td>
+                                        {{ number_format($data->sum('total_b_ts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
