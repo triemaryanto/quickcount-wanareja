@@ -10,7 +10,7 @@
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Tabel Rincian Data Suara Bupati </h6>
+                    <h6 class="card-title">Tabel Rincian Data Suara Bupati Berdasarkan Desa </h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
