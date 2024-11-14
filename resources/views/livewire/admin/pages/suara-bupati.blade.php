@@ -126,7 +126,7 @@
                                             class="text-right {{ $row->total_b > $row->total_sum ? 'bg-danger' : '' }}">
                                             <span @if ($row->total_b > $row->total_sum) style="color:white;" @endif>
                                                 {{ number_format($row->total_b ?? 0, 0, ',', '.') }}
-                                                <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%)
+                                                {{-- <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%) --}}
                                             </span>
                                         </td>
                                         {{-- <td class="text-right">{{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
