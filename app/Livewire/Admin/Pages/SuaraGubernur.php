@@ -8,7 +8,7 @@ use Livewire\Component;
 use Livewire\WithPagination;
 use Barryvdh\DomPDF\Facade\Pdf;
 
-class FilteringKecamatan extends Component
+class SuaraGubernur extends Component
 {
     use WithPagination;
     protected $paginationTheme = 'bootstrap';
@@ -130,7 +130,7 @@ class FilteringKecamatan extends Component
         } else {
             $data = $data->get(); // Fetch all records if limit is null
         }
-        return view('livewire.admin.pages.filtering-kecamatan', [
+        return view('livewire.admin.pages.suara-gubernur', [
             'data' => $data
         ]);
     }

@@ -23,13 +23,13 @@ class TPSProtect
         // Check if the user has the role 'admin-tps' or 'tps'
         if ($user->hasRole('admin-tps')) {
             // Check if the current route is one of the allowed routes
-            if ($request->routeIs('dashboard-tps') || $request->routeIs('pendaftaran-tps') || $request->routeIs('tps') || $request->routeIs('user')) {
+            if ($request->routeIs('dashboard-tps') || $request->routeIs('pendaftaran-tps') || $request->routeIs('tps') || $request->routeIs('user') || $request->routeIs('perolehan-gubernur') || $request->routeIs('perolehan-bupati')) {
                 return $next($request); // Allow access to the route
             }
             // If the route is not allowed, redirect to dashboard-tps or another fallback
             return redirect()->route('dashboard-tps');
         } elseif ($user->hasRole('tps')) {
-            if ($request->routeIs('dashboard-tps') || $request->routeIs('tps')) {
+            if ($request->routeIs('dashboard-tps') || $request->routeIs('tps') || $request->routeIs('perolehan-gubernur') || $request->routeIs('perolehan-bupati')) {
                 return $next($request); // Allow access to the route
             }
             return redirect()->route('dashboard-tps');

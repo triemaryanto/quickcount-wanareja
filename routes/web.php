@@ -14,6 +14,8 @@ use App\Livewire\Admin\Pages\Role;
 use App\Livewire\Admin\Pages\User;
 use App\Livewire\Admin\Pages\Home;
 use App\Livewire\Admin\Pages\Pendaftaran\Pendaftaran;
+use App\Livewire\Admin\Pages\SuaraBupati;
+use App\Livewire\Admin\Pages\SuaraGubernur;
 use App\Livewire\Admin\Pages\TPS\InputTPS;
 use App\Livewire\Admin\Pages\TPS\PendaftaranTPS;
 use Illuminate\Support\Facades\Route;
@@ -52,6 +54,8 @@ Route::middleware([
         Route::group(['middleware' => 'tps.protect'], function () {
             Route::get('/dashboard-tps', DashboardTps::class)->name('dashboard-tps');
             Route::get('/pendaftaran-tps', PendaftaranTPS::class)->name('pendaftaran-tps');
+            Route::get('/perolehan-bupati', SuaraBupati::class)->name('perolehan-bupati');
+            Route::get('/perolehan-gubernur', SuaraGubernur::class)->name('perolehan-gubernur');
             Route::get('/tps', InputTPS::class)->name('tps');
             Route::get('/dashboard', Home::class)->name('home');
             Route::get('/datalila', Lila::class)->name('data-lila');

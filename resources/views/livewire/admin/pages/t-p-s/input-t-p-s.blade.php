@@ -63,6 +63,7 @@
                             <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
                             <th rowspan="2" class="text-center">DPT</th>
                             <th rowspan="2" class="text-center">DPTb</th>
+                            <th rowspan="2" class="text-center">DPK</th>
                             <th rowspan="2" class="text-center">Action</th>
                         </tr>
                         <tr>
@@ -88,7 +89,7 @@
                                     ($row->b_4 ?? 0) +
                                     ($row->b_ts ?? 0);
                                 $totalGubernur = ($row->g_1 ?? 0) + ($row->g_2 ?? 0) + ($row->g_ts ?? 0);
-                                $total = ($row->dpt ?? 0) + ($row->dptb ?? 0);
+                                $total = ($row->dpt ?? 0) + ($row->dptb ?? 0) + ($row->dpk ?? 0);
                             @endphp
                             <tr role="row" class="odd {{ $idNya == $row->id ? 'table-active ' : 'disabled' }}">
                                 <td>{{ ($data->currentPage() - 1) * $data->perPage() + $index + 1 }}</td>
@@ -118,8 +119,7 @@
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="b_ts.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td
-                                    class="text-right {{ $totalBupati > $total ? 'bg-danger' : ($totalBupati < $total ? 'bg-orange-300' : 'bg-success') }}">
+                                <td class="text-right {{ $totalBupati > $total ? 'bg-danger' : '' }}">
                                     @if ($totalBupati > $total)
                                         <span style="color:white;">
                                             {{ number_format($totalBupati ?? 0, 0, ',', '.') }}
@@ -140,8 +140,7 @@
                                         {{ $idNya == $row->id ? '' : 'disabled' }}
                                         wire:model.defer="g_ts.{{ $index }}"
                                         onkeypress="return isNumberKey(event)"></td>
-                                <td
-                                    class="text-right {{ $totalGubernur > $total ? 'bg-danger' : ($totalGubernur < $total ? 'bg-orange-300' : 'bg-success') }}">
+                                <td class="text-right {{ $totalGubernur > $total ? 'bg-danger' : '' }}">
                                     @if ($totalGubernur > $total)
                                         <span style="color:white;">
                                             {{ number_format($totalGubernur ?? 0, 0, ',', '.') }}
@@ -152,6 +151,10 @@
                                 </td>
                                 <td class="text-right">{{ number_format($row->dpt ?? 0, 0, ',', '.') }}</td>
                                 <td class="text-right">{{ number_format($row->dptb ?? 0, 0, ',', '.') }}</td>
+                                <td><input type="number" class="form-control" style="width: 70px; padding: 8px;"
+                                        {{ $idNya == $row->id ? '' : 'disabled' }}
+                                        wire:model.defer="dpk.{{ $index }}"
+                                        onkeypress="return isNumberKey(event)"></td>
                                 <!-- Action Buttons -->
                                 <td>
                                     @if ($idNya == $row->id)

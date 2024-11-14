@@ -45,8 +45,26 @@
                             </span>
                         </a>
                     </li>
+                    <li class="nav-item">
+                        <a href="{{ route('perolehan-gubernur') }}"
+                            class="nav-link {{ request()->is('perolehan-gubernur') ? 'active' : '' }}">
+                            <i class="icon-users"></i>
+                            <span>
+                                Hitung Suara Gubernur
+                            </span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('perolehan-bupati') }}"
+                            class="nav-link {{ request()->is('perolehan-bupati') ? 'active' : '' }}">
+                            <i class="icon-users"></i>
+                            <span>
+                                Hitung Suara Bupati
+                            </span>
+                        </a>
+                    </li>
                 @endcan
-                @can('pendaftaran')
+                {{-- @can('pendaftaran')
                     <li class="nav-item">
                         <a href="{{ route('pendaftaran') }}"
                             class="nav-link {{ request()->is('pendaftaran') ? 'active' : '' }}">
@@ -56,7 +74,7 @@
                             </span>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
                 @can('pendaftaran-tps')
                     <li class="nav-item">
                         <a href="{{ route('pendaftaran-tps') }}"
@@ -73,12 +91,12 @@
                         <a href="{{ route('tps') }}" class="nav-link {{ request()->is('tps') ? 'active' : '' }}">
                             <i class="icon-file-stats2"></i>
                             <span>
-                                TPS
+                                Rekap Hitung Suara
                             </span>
                         </a>
                     </li>
                 @endcan
-                @can('datalila')
+                {{-- @can('datalila')
                     <li class="nav-item">
                         <a href="{{ route('data-lila') }}"
                             class="nav-link {{ request()->is('datalila') ? 'active' : '' }}">
@@ -88,7 +106,7 @@
                             </span>
                         </a>
                     </li>
-                @endcan
+                @endcan --}}
                 @can('datagarageshow')
                     <li class="nav-item">
                         <a href="{{ route('data-garageshow') }}"

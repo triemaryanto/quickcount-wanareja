@@ -1,9 +1,16 @@
 <div>
+    @push('css')
+        <link href="{{ asset('limitless/') }}/global_assets/css/icons/material/icons.css" rel="stylesheet" type="text/css">
+    @endpush
+    <x-slot name="header">
+        <livewire:admin.global.page-header judul="Dashboard" subjudul="Hitung Suara Sementara Bupati Kec. Wanareja"
+            :breadcrumb="['Hitung Suara Bupati']" />
+    </x-slot>
     <div class="row">
         <div class="col-xl-12">
             <div class="card">
                 <div class="card-header header-elements-inline">
-                    <h6 class="card-title">Rincian Data Bupati dan Gubernur </h6>
+                    <h6 class="card-title">Tabel Rincian Data Suara Bupati </h6>
                     <div class="header-elements">
                         <div class="form-check form-check-right form-check-switchery form-check-switchery-sm">
                             <label class="form-check-label">
@@ -16,24 +23,6 @@
                 </div>
                 <div class="card-body py-0">
                     <div class="col-12 mb-3 row">
-                        {{-- <div class="search-set col-md-2">
-                            <div class="search-input">
-                                <div class="dataTables_filter"><label>
-                                        <input type="search" class="form-control form-control-sm" placeholder="Search"
-                                            wire:model.live='search'></label></div>
-                            </div>
-                        </div> --}}
-                        {{-- <label class="col-form-label col-md-1">Kecamatan</label> --}}
-                        {{-- <div class="col-md-3">
-                            <div class="col-lg-10">
-                                <select wire:model.live="searchKecamatan" class="form-control">
-                                    <option value="">Pilih Kecamatan</option>
-                                    @foreach ($listKec ?? [] as $list)
-                                        <option value="{{ $list->region_cd }}">{{ $list->region_nm }}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div> --}}
                         <label class="col-form-label col-md-1">Kelurahan / Desa</label>
                         <div class="col-md-3">
                             <div class="col-lg-10">
@@ -59,11 +48,9 @@
                                 </select>
                             </div>
                         </div>
-
-                    </div>
-                    <div class="col-12 mb-3 row">
                         <div class="col-md-1">
-                            <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset</a>
+                            <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset
+                                Filter</a>
                         </div>
                         <div class="col-md-1">
                             <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReport">
@@ -87,8 +74,8 @@
                                     <th rowspan="2" class="text-center">Desa</th>
                                     {{-- <th rowspan="2" class="text-center">TPS</th> --}}
                                     <th colspan="6" class="text-center">Bupati/Wakil Bupati</th>
-                                    <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
-                                    <th colspan="6" class="text-center">Hak Suara</th>
+                                    {{-- <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th> --}}
+                                    <th colspan="4" class="text-center">Hak Suara</th>
                                 </tr>
                                 <tr>
                                     <th class="text-center">No. 1 <br>SBW & Fahrur Rozi</th>
@@ -97,10 +84,10 @@
                                     <th class="text-center">No. 4 <br>Awaludin & Vicky</th>
                                     <th class="text-center">Suara Tidak Sah</th>
                                     <th class="text-center">Total</th>
-                                    <th class="text-center">No. 1 <br>Andika & Hendi</th>
+                                    {{-- <th class="text-center">No. 1 <br>Andika & Hendi</th>
                                     <th class="text-center">No. 2 <br>Luthfi & Taj Yasin</th>
                                     <th class="text-center">Suara Tidak Sah</th>
-                                    <th class="text-center">Total</th>
+                                    <th class="text-center">Total</th> --}}
                                     <th class="text-center">DPT</th>
                                     <th class="text-center">DPTb</th>
                                     <th class="text-center">DPK</th>
@@ -141,7 +128,7 @@
                                                 <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%)
                                             </span>
                                         </td>
-                                        <td class="text-right">{{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
+                                        {{-- <td class="text-right">{{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
                                             <br> ({{ number_format($row->perc_g_1 ?? 0, 2) }}%)
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
@@ -156,7 +143,7 @@
                                                 {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
                                                 <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%)
                                             </span>
-                                        </td>
+                                        </td> --}}
                                         <td class="text-right"> {{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_dptb ?? 0, 0, ',', '.') }}
@@ -164,7 +151,7 @@
                                         <td class="text-right">{{ number_format($row->total_dpK ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">
-                                            {{ number_format($row->total_dptb + $row->total_dpt ?? 0, 0, ',', '.') }}
+                                            {{ number_format($row->total_dptb + $row->total_dpt + $row->total_dpk ?? 0, 0, ',', '.') }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -182,7 +169,7 @@
                                         {{ number_format($data->sum('total_bts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
                                     </td>
-                                    <td class="text-right">
+                                    {{-- <td class="text-right">
                                         {{ number_format($data->sum('total_g_1') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g_2') ?? 0, 0, ',', '.') }}</td>
@@ -190,15 +177,15 @@
                                         {{ number_format($data->sum('total_gts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g') ?? 0, 0, ',', '.') }}
-                                    </td>
+                                    </td> --}}
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dpt') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dptb') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_dpK') ?? 0, 0, ',', '.') }}</td>
+                                        {{ number_format($data->sum('total_dpk') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') ?? 0, 0, ',', '.') }}
+                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') + $data->sum('total_dpk') ?? 0, 0, ',', '.') }}
                                     </td>
                                 </tr>
                             </tbody>

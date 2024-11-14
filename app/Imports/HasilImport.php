@@ -2,6 +2,7 @@
 
 namespace App\Imports;
 
+use App\Models\ComRegion;
 use App\Models\Hasil;
 use Illuminate\Support\Facades\DB;
 use Maatwebsite\Excel\Concerns\ToModel;
@@ -52,30 +53,32 @@ class HasilImport  implements ToModel, WithHeadingRow, WithProgressBar,  WithEve
         DB::beginTransaction();
         try {
 
-            $this->terinput = $this->terinput + 1;
-
-            $kecamatan = $row['kecamatan'] ?? null;
-            $desa = $row['desa'] ?? null;
-            $tps = $row['tps'] ?? null;
-            $dpt = $row['dpt'] ?? null;
-            $dptb = $row['dptb'] ?? 0;
-            $a = DB::table('com_regions')
-                ->where('region_nm', ucwords($kecamatan))
+            $kecamatanData = ComRegion::where('region_nm', ucwords($row['kecamatan']))
                 ->where('region_level', 3)
                 ->first();
-            $ak = $a ? $a->region_cd : 'null';
-            $b = DB::table('com_regions')
-                ->where('region_nm', ucwords($desa))
+
+            if (!$kecamatanData) {
+                // Skip if Kecamatan is not found
+                return null;
+            }
+
+            // Fetch Desa under the specified Kecamatan
+            $desaData = ComRegion::where('region_nm', ucwords($row['desa']))
                 ->where('region_level', 4)
+                ->where('region_root', $kecamatanData->region_cd)
                 ->first();
-            $bd = $b ? $b->region_cd : 'null';
+
+            if (!$desaData) {
+                // Skip if Desa is not found
+                return null;
+            }
 
             $user = Hasil::create([
-                'kecamatan' => $ak,
-                'desa' => $bd,
-                'tps' => $tps,
-                'dpt' => $dpt,
-                'dptb' => $dptb
+                'kecamatan' => $kecamatanData->region_cd,
+                'desa' => $desaData->region_cd,
+                'tps' => $row['tps'],
+                'dpt' => $row['dpt'],
+                'dptb' => $row['dptb'],
             ]);
 
             DB::commit();
