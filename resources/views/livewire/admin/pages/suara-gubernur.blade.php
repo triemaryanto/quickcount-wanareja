@@ -75,6 +75,7 @@
                                     {{-- <th rowspan="2" class="text-center">TPS</th> --}}
                                     {{-- <th colspan="6" class="text-center">Bupati/Wakil Bupati</th> --}}
                                     <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th>
+                                    <th rowspan="2" class="text-center">Presentasi <br>Kehadiran</th>
                                     <th colspan="4" class="text-center">Hak Suara</th>
                                 </tr>
                                 <tr>
@@ -129,20 +130,26 @@
                                             </span>
                                         </td> --}}
                                         <td class="text-right">{{ number_format($row->total_g_1 ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_g_1 ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_g_1 ?? 0, 2) }}%) --}}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_2 ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_g_2 ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_g_2 ?? 0, 2) }}%) --}}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_g_ts ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_g_ts ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_g_ts ?? 0, 2) }}%) --}}
                                         </td>
                                         <td
                                             class="text-right  {{ $row->total_g > $row->total_sum ? 'bg-danger' : '' }}">
                                             <span @if ($row->total_g > $row->total_sum) style="color:white;" @endif>
                                                 {{ number_format($row->total_g ?? 0, 0, ',', '.') }}
-                                                <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%)
+                                                {{-- <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%) --}}
                                             </span>
+                                        </td>
+                                        <td class="text-right">
+                                            @php
+                                                $totalHakSuara = $row->total_dptb + $row->total_dpt + $row->total_dpk;
+                                            @endphp
+                                            ({{ number_format($row->total_g / $totalHakSuara ?? 0, 2) }}%)
                                         </td>
                                         <td class="text-right"> {{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}
                                         </td>
@@ -151,7 +158,7 @@
                                         <td class="text-right">{{ number_format($row->total_dpK ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">
-                                            {{ number_format($row->total_dptb + $row->total_dpt ?? 0, 0, ',', '.') }}
+                                            {{ number_format($row->total_dptb + $row->total_dpt + $row->total_dpk ?? 0, 0, ',', '.') }}
                                         </td>
                                     </tr>
                                 @endforeach
@@ -179,13 +186,23 @@
                                         {{ number_format($data->sum('total_g') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
+                                        @php
+                                            $a = $data->sum('total_g');
+                                            $b =
+                                                $data->sum('total_dpt') +
+                                                $data->sum('total_dptb') +
+                                                $data->sum('total_dpk');
+                                        @endphp
+                                        ({{ number_format($a / $b ?? 0, 2) }}%)
+                                    </td>
+                                    <td class="text-right">
                                         {{ number_format($data->sum('total_dpt') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dptb') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dpK') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') ?? 0, 0, ',', '.') }}
+                                        {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') + $data->sum('total_dpk') ?? 0, 0, ',', '.') }}
                                     </td>
                                 </tr>
                             </tbody>

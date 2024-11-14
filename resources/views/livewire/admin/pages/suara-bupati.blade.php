@@ -75,6 +75,7 @@
                                     {{-- <th rowspan="2" class="text-center">TPS</th> --}}
                                     <th colspan="6" class="text-center">Bupati/Wakil Bupati</th>
                                     {{-- <th colspan="4" class="text-center">Gubernur/Wakil Gubernur</th> --}}
+                                    <th rowspan="2" class="text-center">Presentasi <br>Kehadiran</th>
                                     <th colspan="4" class="text-center">Hak Suara</th>
                                 </tr>
                                 <tr>
@@ -107,19 +108,19 @@
                                         {{-- <td class="text-left">{{ $row->kecamatanTPS->region_nm ?? '' }}</td> --}}
                                         <td class="text-left">{{ $row->desaTPS->region_nm ?? '' }}</td>
                                         <td class="text-right">{{ number_format($row->total_b_1 ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_b_1 ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_b_1 ?? 0, 2) }}%) --}}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_2 ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_b_2 ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_b_2 ?? 0, 2) }}%) --}}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_3 ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_b_3 ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_b_3 ?? 0, 2) }}%) --}}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_4 ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_b_4 ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_b_4 ?? 0, 2) }}%) --}}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_b_ts ?? 0, 0, ',', '.') }}
-                                            <br> ({{ number_format($row->perc_b_ts ?? 0, 2) }}%)
+                                            {{-- <br> ({{ number_format($row->perc_b_ts ?? 0, 2) }}%) --}}
                                         </td>
                                         <td
                                             class="text-right {{ $row->total_b > $row->total_sum ? 'bg-danger' : '' }}">
@@ -144,6 +145,12 @@
                                                 <br> ({{ number_format($row->perc_total_b ?? 0, 2) }}%)
                                             </span>
                                         </td> --}}
+                                        <td class="text-right">
+                                            @php
+                                                $totalHakSuara = $row->total_dptb + $row->total_dpt + $row->total_dpk;
+                                            @endphp
+                                            ({{ number_format($row->total_b / $totalHakSuara ?? 0, 2) }}%)
+                                        </td>
                                         <td class="text-right"> {{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}
                                         </td>
                                         <td class="text-right">{{ number_format($row->total_dptb ?? 0, 0, ',', '.') }}
@@ -168,6 +175,16 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_bts') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
+                                    </td>
+                                    <td class="text-right">
+                                        @php
+                                            $a = $data->sum('total_b'); // total sakecamatan dari perolehan suara + suara tidak sah
+                                            $b =
+                                                $data->sum('total_dpt') + // total sakecamatan total dpt
+                                                $data->sum('total_dptb') + // total sakecamatan total dptb
+                                                $data->sum('total_dpk'); // total sakecamatan total dpk
+                                        @endphp
+                                        ({{ number_format($a / $b ?? 0, 2) }}%) {{-- - hasil presentasi $a dibagi $b --}}
                                     </td>
                                     {{-- <td class="text-right">
                                         {{ number_format($data->sum('total_g_1') ?? 0, 0, ',', '.') }}</td>
