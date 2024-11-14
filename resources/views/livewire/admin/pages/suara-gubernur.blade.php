@@ -200,7 +200,7 @@
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dptb') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
-                                        {{ number_format($data->sum('total_dpK') ?? 0, 0, ',', '.') }}</td>
+                                        {{ number_format($data->sum('total_dpk') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dpt') + $data->sum('total_dptb') + $data->sum('total_dpk') ?? 0, 0, ',', '.') }}
                                     </td>
