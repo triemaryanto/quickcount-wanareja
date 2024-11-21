@@ -2,6 +2,7 @@
 
 namespace App\Livewire\Admin\Pages\TPS;
 
+use App\Events\LiveChart;
 use App\Models\ComRegion;
 use App\Models\Hasil;
 use Livewire\Component;
@@ -74,7 +75,7 @@ class InputTPS extends Component
             $row->dpk = $this->dpk[$index];
             $row->save();
         }
-
+        event(new LiveChart($row));
         $this->idNya = null;
     }
     public function mount()
