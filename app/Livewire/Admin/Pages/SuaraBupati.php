@@ -46,19 +46,8 @@ class SuaraBupati extends Component
         SUM(dptb) as total_dptb, 
         SUM(dpk) as total_dpk,
         -- Total suara yang dihitung
-        SUM(dpt + dptb + dpk) as total_sum,
-        -- Persentase masing-masing kategori
-        (SUM(b_1) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_1,
-        (SUM(b_2) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_2,
-        (SUM(b_3) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_3,
-        (SUM(b_4) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_4,
-        (SUM(b_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_b_ts,
-        (SUM(g_1) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_1,
-        (SUM(g_2) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_2,
-        (SUM(g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_ts,
-        (SUM(b_1 + b_2 + b_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_b,
-        (SUM(g_1 + g_2 + g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_g')
-            ->groupBy('tps');
+        SUM(dpt + dptb + dpk) as total_sum')
+            ->groupBy('desa', 'tps');
         if ($this->searchDesa) {
             $data->whereHas('desaTPS', function ($query) {
                 $query->where('region_cd', $this->searchDesa);
@@ -66,7 +55,7 @@ class SuaraBupati extends Component
         }
         $laporan = $data->orderBy('desa', 'ASC')->get();
         $data = [
-            'title' => 'Kec. Wanareja',
+            'title' => 'Kec. Wanareja Per TPS',
             'data' => $laporan
         ];
 
@@ -116,7 +105,7 @@ class SuaraBupati extends Component
         }
         $laporan = $data->orderBy('desa', 'ASC')->get();
         $data = [
-            'title' => 'Kec. Wanareja',
+            'title' => 'Kec. Wanareja Per Desa',
             'data' => $laporan
         ];
 

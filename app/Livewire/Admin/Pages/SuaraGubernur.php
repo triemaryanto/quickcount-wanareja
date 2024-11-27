@@ -58,7 +58,7 @@ class SuaraGubernur extends Component
         (SUM(g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_g_ts,
         (SUM(b_1 + b_2 + b_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_b,
         (SUM(g_1 + g_2 + g_ts) / NULLIF(SUM(dpt + dptb + dpk), 0)) * 100 as perc_total_g')
-            ->groupBy('tps');
+            ->groupBy('desa', 'tps');
         if ($this->searchDesa) {
             $data->whereHas('desaTPS', function ($query) {
                 $query->where('region_cd', $this->searchDesa);
@@ -66,7 +66,7 @@ class SuaraGubernur extends Component
         }
         $laporan = $data->orderBy('desa', 'ASC')->get();
         $data = [
-            'title' => 'Kec. Wanareja',
+            'title' => 'Kec. Wanareja Per TPS',
             'data' => $laporan
         ];
 
@@ -116,7 +116,7 @@ class SuaraGubernur extends Component
         }
         $laporan = $data->orderBy('desa', 'ASC')->get();
         $data = [
-            'title' => 'Kec. Wanareja',
+            'title' => 'Kec. Wanareja Per Desa',
             'data' => $laporan
         ];
 
