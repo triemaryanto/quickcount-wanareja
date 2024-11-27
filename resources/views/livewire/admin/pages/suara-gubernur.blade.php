@@ -209,8 +209,9 @@
                                                 $data->sum('total_dpt') +
                                                 $data->sum('total_dptb') +
                                                 $data->sum('total_dpk');
+                                            $percentage = $b > 0 ? ($a / $b) * 100 : 0; // Check to prevent division by zero
                                         @endphp
-                                        ({{ number_format(($a / $b) * 100, 2) }}%)
+                                        ({{ number_format($percentage, 2) }}%)
                                     </td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dpt') ?? 0, 0, ',', '.') }}</td>
