@@ -166,7 +166,8 @@
                                             @php
                                                 $totalHakSuara = $row->total_dptb + $row->total_dpt + $row->total_dpk;
                                             @endphp
-                                            ({{ number_format($row->total_b / $totalHakSuara ?? 0, 2) }}%)
+                                            {{-- ({{ number_format($row->total_b / $totalHakSuara ?? 0, 2) }}%) --}}
+                                            ({{ number_format(($row->total_b / $totalHakSuara) * 100, 2) }}%)
                                         </td>
                                         <td class="text-right"> {{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}
                                         </td>

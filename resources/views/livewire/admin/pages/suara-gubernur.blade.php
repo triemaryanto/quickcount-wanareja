@@ -166,7 +166,8 @@
                                             @php
                                                 $totalHakSuara = $row->total_dptb + $row->total_dpt + $row->total_dpk;
                                             @endphp
-                                            ({{ number_format($row->total_g / $totalHakSuara ?? 0, 2) }}%)
+                                            {{-- ({{ number_format(($row->total_g / $totalHakSuara) * 100 ?? 0, 2) }}%) --}}
+                                            ({{ number_format(($row->total_g / $totalHakSuara) * 100, 2) }}%)
                                         </td>
                                         <td class="text-right"> {{ number_format($row->total_dpt ?? 0, 0, ',', '.') }}
                                         </td>
@@ -210,7 +211,7 @@
                                                 $data->sum('total_dptb') +
                                                 $data->sum('total_dpk');
                                         @endphp
-                                        {{ $b > 0 ? number_format(($a / $b) * 100, 2) : '0.00' }}%
+                                        ({{ number_format(($a / $b) * 100, 2) }}%)
                                     </td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dpt') ?? 0, 0, ',', '.') }}</td>
