@@ -52,7 +52,7 @@
                             <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset
                                 Filter</a>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div class="col-md-2">
                                 <div type="button" wire:loading.remove class="btn btn-info"
                                     wire:click="downloadReport">
