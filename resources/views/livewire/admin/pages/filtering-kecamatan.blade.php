@@ -65,11 +65,24 @@
                         <div class="col-md-1">
                             <a href="{{ route('dashboard-tps') }}" wire:navigate class="btn btn-primary">Reset</a>
                         </div>
-                        <div class="col-md-1">
+                        <div class="col-md-2">
                             <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReport">
                                 Download
-                                Laporan</div>
+                                Laporan Per Desa</div>
                             <div wire:loading wire:target="downloadReport">
+                                <button class="btn btn-secondary-light" type="button" disabled>
+                                    <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                        aria-hidden="true"></span>
+                                    Downloading...
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="col-md-2">
+                            <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReportTPS">
+                                Download
+                                Laporan Per TPS</div>
+                            <div wire:loading wire:target="downloadReportTPS">
                                 <button class="btn btn-secondary-light" type="button" disabled>
                                     <span class="spinner-grow spinner-grow-sm align-middle" role="status"
                                         aria-hidden="true"></span>
@@ -180,7 +193,8 @@
                                         {{ number_format($data->sum('total_b_4') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_bts') ?? 0, 0, ',', '.') }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_g_1') ?? 0, 0, ',', '.') }}</td>

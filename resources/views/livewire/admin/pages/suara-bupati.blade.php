@@ -53,15 +53,32 @@
                                 Filter</a>
                         </div>
                         <div class="col-md-1">
-                            <div type="button" wire:loading.remove class="btn btn-info" wire:click="downloadReport">
-                                Download
-                                Laporan</div>
-                            <div wire:loading wire:target="downloadReport">
-                                <button class="btn btn-secondary-light" type="button" disabled>
-                                    <span class="spinner-grow spinner-grow-sm align-middle" role="status"
-                                        aria-hidden="true"></span>
-                                    Downloading...
-                                </button>
+                            <div class="col-md-2">
+                                <div type="button" wire:loading.remove class="btn btn-info"
+                                    wire:click="downloadReport">
+                                    Download
+                                    Laporan Per Desa</div>
+                                <div wire:loading wire:target="downloadReport">
+                                    <button class="btn btn-secondary-light" type="button" disabled>
+                                        <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                            aria-hidden="true"></span>
+                                        Downloading...
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="col-md-2">
+                                <div type="button" wire:loading.remove class="btn btn-info"
+                                    wire:click="downloadReportTPS">
+                                    Download
+                                    Laporan Per TPS</div>
+                                <div wire:loading wire:target="downloadReportTPS">
+                                    <button class="btn btn-secondary-light" type="button" disabled>
+                                        <span class="spinner-grow spinner-grow-sm align-middle" role="status"
+                                            aria-hidden="true"></span>
+                                        Downloading...
+                                    </button>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -174,7 +191,8 @@
                                         {{ number_format($data->sum('total_b_4') ?? 0, 0, ',', '.') }}</td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_b_ts') ?? 0, 0, ',', '.') }}</td>
-                                    <td class="text-right">{{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
+                                    <td class="text-right">
+                                        {{ number_format($data->sum('total_b') ?? 0, 0, ',', '.') }}
                                     </td>
                                     <td class="text-right">
                                         @php
