@@ -167,16 +167,16 @@
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 plugins: {
-                                    datalabels: {
-                                        color: '#fff', // Warna teks
-                                        formatter: (value, context) => {
-                                            const label = context.chart.data.labels[context
-                                                .dataIndex];
-                                            return `${label}\n${value}`; // Menampilkan label dan nilai
-                                        },
-                                        font: {
-                                            weight: 'bold',
-                                            size: 14 // Ukuran font
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                const value = tooltipItem.raw;
+                                                const total = data.gubernur.reduce((sum, v) => sum +
+                                                    v, 0);
+                                                const percentage = ((value / total) * 100).toFixed(
+                                                    2);
+                                                return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                                            }
                                         }
                                     }
                                 }
@@ -212,16 +212,16 @@
                                 responsive: true,
                                 maintainAspectRatio: false,
                                 plugins: {
-                                    datalabels: {
-                                        color: '#fff', // Warna teks
-                                        formatter: (value, context) => {
-                                            const label = context.chart.data.labels[context
-                                                .dataIndex];
-                                            return `${label}\n${value}`; // Menampilkan label dan nilai
-                                        },
-                                        font: {
-                                            weight: 'bold',
-                                            size: 14 // Ukuran font
+                                    tooltip: {
+                                        callbacks: {
+                                            label: function(tooltipItem) {
+                                                const value = tooltipItem.raw;
+                                                const total = data.bupati.reduce((sum, v) => sum +
+                                                    v, 0);
+                                                const percentage = ((value / total) * 100).toFixed(
+                                                    2);
+                                                return `${tooltipItem.label}: ${value} (${percentage}%)`;
+                                            }
                                         }
                                     }
                                 }
