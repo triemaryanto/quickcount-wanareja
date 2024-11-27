@@ -210,7 +210,7 @@
                                                 $data->sum('total_dptb') +
                                                 $data->sum('total_dpk');
                                         @endphp
-                                        ({{ number_format($a / $b ?? 0, 2) }}%)
+                                        ({{ number_format(($a / $b) * 100, 2) }}%)
                                     </td>
                                     <td class="text-right">
                                         {{ number_format($data->sum('total_dpt') ?? 0, 0, ',', '.') }}</td>

@@ -202,7 +202,7 @@
                                                 $data->sum('total_dptb') + // total sakecamatan total dptb
                                                 $data->sum('total_dpk'); // total sakecamatan total dpk
                                         @endphp
-                                        ({{ number_format($a / $b ?? 0, 2) }}%) {{-- - hasil presentasi $a dibagi $b --}}
+                                        ({{ number_format(($a / $b) * 100, 2) }}%) {{-- - hasil presentasi $a dibagi $b --}}
                                     </td>
                                     {{-- <td class="text-right">
                                         {{ number_format($data->sum('total_g_1') ?? 0, 0, ',', '.') }}</td>
